@@ -4,6 +4,7 @@ import cors from 'cors'
 import dotenv from 'dotenv'
 dotenv.config()
 import { connectDb } from './src/config/configDb.js'
+import UserRouter from './src/router/UserRouter.js'
 
 const app = express()
 
@@ -19,7 +20,7 @@ connectDb()
 
 
 //router
-app.use("/api/v1/user", ()=> {})
+app.use("/api/v1/user", UserRouter)
 
 
 //uncaught error handler
