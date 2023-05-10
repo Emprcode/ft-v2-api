@@ -25,11 +25,11 @@ router.post("/", async (req, res, next) => {
 });
 
 //getUser
-router.get("/", async (req, res, next) => {
+router.post("/login", async (req, res, next) => {
   try {
     console.log(req.body);
 
-    const result = await getSingleUser();
+    const result = await getSingleUser(req.body);
     res.json({
       status: "success",
       message: "User created Successfully",

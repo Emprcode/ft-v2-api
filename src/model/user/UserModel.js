@@ -4,8 +4,8 @@ export const addUser = (userObj) => {
   return UserSchema(userObj).save();
 };
 
-export const getSingleUser = (_id) => {
-  return UserSchema.findById(_id);
+export const getSingleUser = (filter) => {
+  return UserSchema.findOne(filter);
 };
 
 export const updateUser = (_id, obj) => {
