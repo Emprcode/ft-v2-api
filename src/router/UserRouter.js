@@ -24,20 +24,30 @@ router.post("/", async (req, res, next) => {
   }
 });
 
-//getUser
+//login
 router.post("/login", async (req, res, next) => {
   try {
     console.log(req.body);
 
     const result = await getSingleUser(req.body);
+    console.log(result)
+    result?._id ? 
     res.json({
       status: "success",
-      message: "User created Successfully",
-      result,
-    });
+      message: "User Logged in successfully",
+      result:{
+        _id: result._id,
+        username: result.username,
+        email: result.email
+      },
+    }): res.json({
+      status:"error",
+      message:"unable to login"
+    })
   } catch (error) {
     next(error);
   }
 });
 
+//getuser
 export default router;
