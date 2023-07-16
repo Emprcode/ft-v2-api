@@ -53,16 +53,23 @@ router.delete("/", async (req, res, next) => {
   try {
     //auth headers
     const { authorization } = req.headers;
-    // console.log(authorization);
-    const result = await getTransactionById(req.body, {
+
+    // const _idArg = req.body;
+    // console.log(_idArg);
+    console.log(req.body)
+    const result = await getTransactionById(_idArg, {
       userId: authorization,
     });
     console.log(result);
-    res.json({
-      status: "success",
-      message: "Transaction fetched successfully!",
-      result,
-    });
+    result?._id
+      ? res.json({
+          status: "success",
+          message: "Transaction deleted successfully!",
+        })
+      : res.json({
+          status: "error",
+          message: "Unable to delete transaction, Please try again later",
+        });
   } catch (error) {
     next(error);
   }
