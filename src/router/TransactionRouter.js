@@ -6,7 +6,7 @@ import {
 
 const router = express.Router();
 
-//post user
+//post transaction
 router.post("/", async (req, res, next) => {
   try {
     const { authorization } = req.headers;
@@ -48,5 +48,24 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-//getuser
+//delete transaction
+router.delete("/", async (req, res, next) => {
+  try {
+    //auth headers
+    const { authorization } = req.headers;
+    // console.log(authorization);
+    const result = await getTransactionById(req.body, {
+      userId: authorization,
+    });
+    console.log(result);
+    res.json({
+      status: "success",
+      message: "Transaction fetched successfully!",
+      result,
+    });
+  } catch (error) {
+    next(error);
+  }
+});
+
 export default router;
