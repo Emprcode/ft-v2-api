@@ -20,6 +20,11 @@ router.post("/", async (req, res, next) => {
           message: "Unable to create user, Please try again later",
         });
   } catch (error) {
+    if (error.message.includes("E11000 duplicate key error collection")) {
+      error.errorcode = 200
+      error.message = " This email has been used already, Please use different email or reset your password"
+      
+    }
     next(error);
   }
 });
@@ -37,7 +42,7 @@ router.post("/login", async (req, res, next) => {
       message: "User Logged in successfully",
       result:{
         _id: result._id,
-        username: result.username,
+        name: result.name,
         email: result.email
       },
     }): res.json({
@@ -48,6 +53,6 @@ router.post("/login", async (req, res, next) => {
     next(error);
   }
 });
+;
 
-//getuser
 export default router;

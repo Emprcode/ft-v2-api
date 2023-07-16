@@ -5,6 +5,8 @@ import dotenv from "dotenv";
 dotenv.config();
 import { connectDb } from "./src/config/configDb.js";
 import UserRouter from "./src/router/UserRouter.js";
+import TransactionRouter from "./src/router/TransactionRouter.js";
+import { userAuth } from "./src/middlewares/authMiddleware.js";
 
 const app = express();
 
@@ -20,6 +22,7 @@ connectDb();
 
 //router
 app.use("/api/v1/user", UserRouter);
+app.use("/api/v1/transaction", userAuth, TransactionRouter)
 
 //uncaught error handler
 

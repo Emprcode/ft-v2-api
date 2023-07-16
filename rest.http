@@ -1,0 +1,30 @@
+# add user
+POST http://localhost:9000/api/v1/user
+Content-Type: application/json
+
+{
+"name":"Test Test",
+"email":"email@com",
+"password":"1234"
+}
+
+###get transaction
+GET http://localhost:9000/api/v1/user
+
+
+# transaction
+###get transaction
+POST http://localhost:9000/api/v1/transaction
+Content-Type: application/json
+Authorization: 64b3a190b392774565eb3ec5
+
+{
+    "type":"income",
+    "name":"Work",
+    "amount":1000
+}
+
+
+###get transaction
+GET http://localhost:9000/api/v1/transaction
+Authorization: 64b3a190b392774565eb3ec5
