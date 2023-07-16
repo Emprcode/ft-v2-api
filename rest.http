@@ -16,15 +16,15 @@ GET http://localhost:9000/api/v1/user
 ###get transaction
 POST http://localhost:9000/api/v1/transaction
 Content-Type: application/json
-Authorization: 64b3a190b392774565eb3ec5
+Authorization: 64b3c09f2ba47c9800061c92
 
 {
     "type":"income",
     "name":"Work",
-    "amount":1000
+    "amount":5000
 }
 
 
 ###get transaction
 GET http://localhost:9000/api/v1/transaction
-Authorization: 64b3a190b392774565eb3ec5
+Authorization: 64b3c09f2ba47c9800061c92

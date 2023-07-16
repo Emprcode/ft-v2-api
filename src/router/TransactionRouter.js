@@ -1,16 +1,21 @@
 import express from "express";
-import { createTransaction, getTransactionById } from "../model/transaction/TransModel.js";
+import {
+  createTransaction,
+  getTransactionById,
+} from "../model/transaction/TransModel.js";
 
 const router = express.Router();
 
 //post user
 router.post("/", async (req, res, next) => {
   try {
-    const {authorization} = req.headers
-    console.log(req.body);
+    const { authorization } = req.headers;
 
-    const result = await createTransaction({...req.body, userId: authorization});
-    console.log(result);
+    const result = await createTransaction({
+      ...req.body,
+      userId: authorization,
+    });
+    // console.log(result);
     result?._id
       ? res.json({
           status: "success",
@@ -28,15 +33,16 @@ router.post("/", async (req, res, next) => {
 //gettransaction
 router.get("/", async (req, res, next) => {
   try {
-//auth headers
-    const result = await getTransactionById();
+    //auth headers
+    const { authorization } = req.headers;
+    // console.log(authorization);
+    const result = await getTransactionById({ userId: authorization });
     console.log(result);
-  res.json({
-          status: "success",
-          message: "Transaction fetched successfully!",
-          result
-        })
-      
+    res.json({
+      status: "success",
+      message: "Transaction fetched successfully!",
+      result,
+    });
   } catch (error) {
     next(error);
   }
