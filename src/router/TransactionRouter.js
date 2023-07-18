@@ -53,11 +53,11 @@ router.delete("/", async (req, res, next) => {
   try {
     //auth headers
     const { authorization } = req.headers;
-
-    // const _idArg = req.body;
-    // console.log(_idArg);
-    console.log(req.body)
-    const result = await getTransactionById(_idArg, {
+console.log(req.body)
+    const _ids = req.body;
+    console.log("Ids:",_ids);
+    // console.log(req.body)
+    const result = await getTransactionById({_ids}, {
       userId: authorization,
     });
     console.log(result);

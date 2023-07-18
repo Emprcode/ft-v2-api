@@ -8,7 +8,7 @@ export const getTransactionById = (userId) => {
   return TransSchema.find(userId);
 };
 
-export const deleteTransactionByIds = (userId, idArg) => {
+export const deleteTransactionByIds = ( idArg, userId,) => {
   return TransSchema.deleteMany({
     userId,
     _id: { $in: idArg },
