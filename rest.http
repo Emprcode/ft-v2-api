@@ -28,3 +28,13 @@ Authorization: 64b3c09f2ba47c9800061c92
 ###get transaction
 GET http://localhost:9000/api/v1/transaction
 Authorization: 64b3c09f2ba47c9800061c92
+
+
+###delete transaction
+DELETE  http://localhost:9000/api/v1/transaction
+Content-Type: application/json
+Authorization: 64b3c09f2ba47c9800061c92
+
+[
+    "64b79a6b6d1adef19368deec", "64b79a6f6d1adef19368def1","64b79a786d1adef19368def6" 
+]

@@ -17,7 +17,7 @@ const TransSchema = new mongoose.Schema({
     userId:{
         type: mongoose.Types.ObjectId,
         ref: "User",
-        requred: true
+        // requred: true
     },
 }, {timestamps: true}) 
 

@@ -1,6 +1,7 @@
 import express from "express";
 import {
   createTransaction,
+  deleteTransactionByIds,
   getTransactionById,
 } from "../model/transaction/TransModel.js";
 
@@ -48,23 +49,48 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-//delete transaction
+// delete single transaction
+// router.delete("/", async (req, res, next) => {
+//   try {
+//     const { authorization } = req.header;
+//     console.log(req.body);
+//     const result = await deleteSingleTransaction(req.body, {
+//       userId: authorization,
+//     });
+
+//     result?._id
+//       ? res.json({
+//           status: "success",
+//           message: "deleted",
+//         })
+//       : res.json({
+//           status: "error",
+//           message: "unable to delete, Please try again later",
+//         });
+//   } catch (error) {
+//     next(error);
+//   }
+// });
+
+//delete many transaction
+
 router.delete("/", async (req, res, next) => {
   try {
     //auth headers
     const { authorization } = req.headers;
-console.log(req.body)
-    const _ids = req.body;
-    console.log("Ids:",_ids);
+    console.log(req.body);
+
     // console.log(req.body)
-    const result = await getTransactionById({_ids}, {
-      userId: authorization,
-    });
+    // const result = await deleteTransactionByIds(
+    //   req.body,
+    //    authorization,
+    // );
+    const result = await deleteTransactionByIds(req.body, authorization);
     console.log(result);
-    result?._id
+    result?.deletedCount
       ? res.json({
           status: "success",
-          message: "Transaction deleted successfully!",
+          message: result?.deletedCount + "item(s) deleted",
         })
       : res.json({
           status: "error",
