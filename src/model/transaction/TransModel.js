@@ -12,6 +12,6 @@ export const getTransactionById = (userId) => {
 //   return TransSchema.findById(_id)
 // }
 
-export const deleteTransactionByIds = (userId, idArg) => {
-  return TransSchema.deleteMany({userId, _id: { $in: idArg } })
+export const deleteTransactionByIds = ( idArg) => {
+  return TransSchema.deleteMany( {_id: { $in: idArg} } )
 }

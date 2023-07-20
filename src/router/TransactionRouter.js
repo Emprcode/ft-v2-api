@@ -77,17 +77,16 @@ router.get("/", async (req, res, next) => {
 router.delete("/", async (req, res, next) => {
   try {
     //auth headers
-    const { authorization } = req.headers;
-    console.log(req.body);
-
-    // console.log(req.body)
-    // const result = await deleteTransactionByIds(
-    //   req.body,
-    //    authorization,
+    // const { authorization } = req.headers;
+    console.log("Ids:",req.body._ids);
+    const idArg = req.body;
     // );
-    const result = await deleteTransactionByIds(req.body, authorization);
+    const result = await deleteTransactionByIds({
+      idArg,
+      // userId: authorization,
+    });
     console.log(result);
-    result?.deletedCount
+    result?._id
       ? res.json({
           status: "success",
           message: result?.deletedCount + "item(s) deleted",
