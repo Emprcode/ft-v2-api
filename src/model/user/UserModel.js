@@ -12,6 +12,6 @@ export const updateUser = (_id, obj) => {
   return UserSchema.findByIdAndUpdate(_id, obj, { new: true });
 };
 
-export const deleteUser = (_id) => {
-  return UserSchema.findByIdAndDelete(_id);
+export const deleteUser = ({_id, obj}) => {
+  return UserSchema.findByIdAndDelete(_id, obj);
 };
