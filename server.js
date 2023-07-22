@@ -25,7 +25,6 @@ app.use("/api/v1/user", UserRouter);
 app.use("/api/v1/transaction", userAuth, TransactionRouter)
 
 //uncaught error handler
-
 app.use("*", (req, res, next) => {
   try {
     const error = {
