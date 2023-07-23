@@ -7,7 +7,7 @@ import { connectDb } from "./src/config/configDb.js";
 import UserRouter from "./src/router/UserRouter.js";
 import TransactionRouter from "./src/router/TransactionRouter.js";
 import { userAuth } from "./src/middlewares/authMiddleware.js";
-
+import path from 'path'
 const app = express();
 
 const PORT = 9000;
@@ -33,7 +33,7 @@ app.use("/api/v1/transaction", userAuth, TransactionRouter)
 
 
 app.use("/", (req, res, next) => {
-  res.sendFile(path.join(_dirname, "/client/build/index.js"))
+  res.sendFile(path.join(__dirname, "/client/build/index.html"))
 })
 //uncaught error handler
 app.use("*", (req, res, next) => {
