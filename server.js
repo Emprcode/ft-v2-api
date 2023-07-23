@@ -12,6 +12,12 @@ const app = express();
 
 const PORT = 9000;
 
+// absolute path for root directory
+
+const __dirname = path.resolve();
+app.use(express.static(path.join(__dirname, "/client/build")))
+
+
 //middlewares
 app.use(express.json());
 app.use(cors());
@@ -24,6 +30,11 @@ connectDb();
 app.use("/api/v1/user", UserRouter);
 app.use("/api/v1/transaction", userAuth, TransactionRouter)
 
+
+
+app.use("/", (req, res, next) => {
+  res.sendFile(path.join(_dirname, "/client/build/index.js"))
+})
 //uncaught error handler
 app.use("*", (req, res, next) => {
   try {
