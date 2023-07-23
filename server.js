@@ -10,7 +10,7 @@ import { userAuth } from "./src/middlewares/authMiddleware.js";
 // import path from 'path'
 const app = express();
 
-const PORT = 9000;
+const PORT = process.env.PORT || 9000;
 
 // absolute path for root directory
 
